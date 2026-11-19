@@ -1,0 +1,60 @@
+name: publish
+
+# Rebuilds the feeds and commits them to the `feeds` branch, which partners pull.
+# Runs on every merge to main and daily, so expired indicators drop off on time.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: publish-feeds
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          # The built-in token normally can push to this repo. If the push is
+          # refused, add a repo secret FEEDS_PUSH_TOKEN (bot account, write access).
+          token: ${{ secrets.FEEDS_PUSH_TOKEN || github.token }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml==6.0.2
+
+      - name: Build feeds
+        env:
+          NEVER_BLOCK_PRIVATE: ${{ secrets.NEVER_BLOCK_PRIVATE }}
+        run: python3 scripts/feeds.py build --require-private --out "$RUNNER_TEMP/out"
+
+      - name: Commit to feeds branch
+        run: |
+          set -euo pipefail
+          git config user.name "threat-feeds bot"
+          git config user.email "threat-feeds-bot@noreply.invalid"
+          if git ls-remote --exit-code --heads origin feeds >/dev/null; then
+            git fetch origin feeds
+            git worktree add "$RUNNER_TEMP/feeds" origin/feeds
+            git -C "$RUNNER_TEMP/feeds" checkout -B feeds
+          else
+            git worktree add --detach "$RUNNER_TEMP/feeds"
+            git -C "$RUNNER_TEMP/feeds" checkout --orphan feeds
+            git -C "$RUNNER_TEMP/feeds" rm -rfq .
+          fi
+          cd "$RUNNER_TEMP/feeds"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp "$RUNNER_TEMP"/out/* .
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Feeds unchanged."
+            exit 0
+          fi
+          git commit -q -m "Publish feeds from ${GITHUB_SHA::8}"
+          git push origin feeds

@@ -1,0 +1,16 @@
+# Copy this to indicators/TICKET-<number>.yaml (one file per ticket).
+# This repo is PUBLIC: no names of affected organisations, internal hostnames,
+# usernames or investigation detail. The ticket number is the link to the "why".
+
+ticket: 123456              # internal ticket number (must match the file name)
+category: phishing          # c2 | phishing | malware | brute-force | scanning | exfiltration | spam | other
+added: 2026-11-19           # date the indicators were submitted (YYYY-MM-DD)
+# expires: 2027-02-17       # optional; default is added + 90 days for IPs, + 180 days for domains
+                            # (max 365 days after "added")
+indicators:
+  - 203.0.113.45            # single IPv4 or IPv6 address
+  - 198.51.100.0/24         # CIDR: IPv4 /24 or smaller, IPv6 /48 or smaller
+  - login-micros0ft.example # hostname / domain (no http://, no paths, no wildcards)
+  # Per-indicator expiry override:
+  # - value: 192.0.2.10
+  #   expires: 2026-12-31

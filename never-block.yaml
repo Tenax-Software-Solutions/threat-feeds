@@ -1,0 +1,105 @@
+# Indicators on or overlapping these lists are rejected by CI.
+# Changing this file needs the same review as indicators. Add to it whenever a
+# near-miss happens.
+#
+# This is the public part. Our own infrastructure and other organisation-specific
+# entries live in a private list with the same format, supplied to CI as the
+# NEVER_BLOCK_PRIVATE secret (never-block.private.yaml locally, git-ignored).
+
+# Any IP/CIDR indicator that overlaps one of these networks is rejected.
+# Private, loopback, link-local, multicast, documentation and other non-global
+# ranges are always rejected and don't need listing here.
+networks:
+  # --- Public DNS resolvers ---
+  - 1.1.1.1/32
+  - 1.0.0.1/32
+  - 8.8.8.8/32
+  - 8.8.4.4/32
+  - 9.9.9.9/32
+  - 149.112.112.112/32
+  - 208.67.222.222/32
+  - 208.67.220.220/32
+  - 2606:4700:4700::1111/128
+  - 2606:4700:4700::1001/128
+  - 2001:4860:4860::8888/128
+  - 2001:4860:4860::8844/128
+
+  # --- Cloudflare (shared anycast: one IP fronts thousands of sites; block by domain instead) ---
+  # https://www.cloudflare.com/ips/
+  - 173.245.48.0/20
+  - 103.21.244.0/22
+  - 103.22.200.0/22
+  - 103.31.4.0/22
+  - 141.101.64.0/18
+  - 108.162.192.0/18
+  - 190.93.240.0/20
+  - 188.114.96.0/20
+  - 197.234.240.0/22
+  - 198.41.128.0/17
+  - 162.158.0.0/15
+  - 104.16.0.0/13
+  - 104.24.0.0/14
+  - 172.64.0.0/13
+  - 131.0.72.0/22
+  - 2400:cb00::/32
+  - 2606:4700::/32
+  - 2803:f800::/32
+  - 2405:b500::/32
+  - 2405:8100::/32
+  - 2a06:98c0::/29
+  - 2c0f:f248::/32
+
+# Domains that must never be blocked, nor any parent or subdomain of them.
+protected_domains:
+  - tenaxsolutions.com
+  - microsoft.com
+  - microsoftonline.com
+  - office.com
+  - office.net
+  - office365.com
+  - outlook.com
+  - live.com
+  - windows.com
+  - windowsupdate.com
+  - sharepoint.com
+  - onmicrosoft.com
+  - google.com
+  - googleapis.com
+  - gstatic.com
+  - apple.com
+  - icloud.com
+  - amazon.com
+  - github.com
+  - githubusercontent.com
+
+# Shared platforms: specific subdomains MAY be blocked (e.g. evil-site.pages.dev),
+# but the platform domain itself (and its parents) never.
+shared_platforms:
+  - windows.net
+  - azurewebsites.net
+  - azureedge.net
+  - azurefd.net
+  - cloudfront.net
+  - amazonaws.com
+  - googleusercontent.com
+  - appspot.com
+  - web.app
+  - firebaseapp.com
+  - github.io
+  - pages.dev
+  - workers.dev
+  - r2.dev
+  - netlify.app
+  - vercel.app
+  - herokuapp.com
+  - ngrok.io
+  - ngrok-free.app
+  - trycloudflare.com
+  - blogspot.com
+  - wordpress.com
+  - wixsite.com
+  - weebly.com
+  - glitch.me
+  - duckdns.org
+  - no-ip.com
+  - ddns.net
