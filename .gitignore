@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 /out/
 never-block.private.yaml
+*.swp

@@ -23,7 +23,7 @@ off on their own. All files are one entry per line with no comments or headers.
 The files are on the `feeds` branch:
 
 ```
-https://raw.githubusercontent.com/GITHUB_OWNER/threat-feeds/feeds/<file>
+https://raw.githubusercontent.com/Tenax-Software-Solutions/threat-feeds/feeds/<file>
 ```
 
 GitHub caches raw files for about 5 minutes, which is fine at an hourly refresh.
@@ -35,7 +35,7 @@ GitHub caches raw files for about 5 minutes, which is fine at an hourly refresh.
 **IPs:**
 
 1. **Firewall → Aliases → Add**: Type **URL Table (IPs)**, Name `tenax_blocklist`,
-   Content `https://raw.githubusercontent.com/GITHUB_OWNER/threat-feeds/feeds/ips.txt`,
+   Content `https://raw.githubusercontent.com/Tenax-Software-Solutions/threat-feeds/feeds/ips.txt`,
    Refresh Frequency **0 days 1 hour**.
 2. Add block rules that use the alias:
    - **WAN, inbound**: Source `tenax_blocklist`, action Block.
@@ -47,7 +47,7 @@ GitHub caches raw files for about 5 minutes, which is fine at an hourly refresh.
 **Hostnames:**
 
 1. **Services → Unbound DNS → Blocklist**: enable it, and add
-   `https://raw.githubusercontent.com/GITHUB_OWNER/threat-feeds/feeds/domains.txt`
+   `https://raw.githubusercontent.com/Tenax-Software-Solutions/threat-feeds/feeds/domains.txt`
    under the custom blocklist URLs.
 2. Apply. Clients have to use the firewall as their DNS server for this to work.
 
