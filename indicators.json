@@ -1,1 +1,74 @@
-[]
+[
+ {
+  "value": "awscloud.live",
+  "type": "domain",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2027-05-21"
+ },
+ {
+  "value": "cdnjquery.net",
+  "type": "domain",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2027-05-21"
+ },
+ {
+  "value": "jquerycloud.ink",
+  "type": "domain",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2027-05-21"
+ },
+ {
+  "value": "104.234.86.165",
+  "type": "ip",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2027-02-20"
+ },
+ {
+  "value": "149.154.161.236",
+  "type": "ip",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2026-12-22"
+ },
+ {
+  "value": "202.61.130.47",
+  "type": "ip",
+  "tickets": [
+   "5052"
+  ],
+  "categories": [
+   "c2"
+  ],
+  "added": "2026-11-22",
+  "expires": "2027-02-20"
+ }
+]

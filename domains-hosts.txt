@@ -1,0 +1,3 @@
+0.0.0.0 awscloud.live
+0.0.0.0 cdnjquery.net
+0.0.0.0 jquerycloud.ink
