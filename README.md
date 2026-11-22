@@ -74,6 +74,11 @@ Each entry carries only an internal ticket number and a generic category. This
 repository is public: never commit names of affected organisations, internal
 hostnames, usernames or investigation detail.
 
+When merging, keep the commit message to the PR title and number. The default
+message is set by the templates in `.gitea/default_merge_message/`; remove any
+trailer lines (such as `Reviewed-on:`) if they appear, since commit messages are
+published here.
+
 More indicators for the same ticket go in the same file. To remove an indicator
 early (for example a false positive), open a PR that deletes the line, or set its
 `expires` to today.
