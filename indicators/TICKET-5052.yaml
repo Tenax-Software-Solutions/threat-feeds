@@ -1,0 +1,14 @@
+ticket: 5052
+category: c2
+added: 2026-11-22
+indicators:
+  - 202.61.130.47
+  - 104.234.86.165
+  # Telegram infrastructure used by the attacker's bot; short expiry because it is shared.
+  - value: 149.154.161.236
+    expires: 2026-12-22
+  - awscloud.live
+  - jquerycloud.ink
+  - cdnjquery.net
+  # Not listed: 172.67.160.178, 172.67.212.54, 104.21.41.55 are shared Cloudflare
+  # addresses (rejected by never-block); the domains above cover them.
